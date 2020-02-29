@@ -87,10 +87,7 @@
 						"referenceName": "Shotgun_Lake",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": {
-								"value": "@concat('yellow_tripdata_', '2009_01', '.csv')",
-								"type": "Expression"
-							}
+							"FileName": "FileName"
 						}
 					}
 				]
