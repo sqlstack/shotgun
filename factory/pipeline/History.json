@@ -24,7 +24,7 @@
 						"referenceName": "Shotgun_SQLServer",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": true
+					"firstRowOnly": false
 				}
 			},
 			{
