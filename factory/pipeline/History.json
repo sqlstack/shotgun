@@ -76,7 +76,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "@activity('HistoryMetaLookup').output",
+								"value": "item()",
 								"type": "Expression"
 							}
 						}
@@ -88,7 +88,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "@activity('HistoryMetaLookup').output",
+								"value": "item()",
 								"type": "Expression"
 							}
 						}
