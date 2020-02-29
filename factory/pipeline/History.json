@@ -84,7 +84,7 @@
 						"referenceName": "Shotgun_Lake",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": "yellow_tripdata_2009_01.csv"
+							"FileName": "yellow_tripdata_2009-01.csv"
 						}
 					}
 				]
