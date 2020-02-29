@@ -20,6 +20,7 @@
 						"value": "@activity('HistoryMetaLookup').output",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Copy_CSV",
