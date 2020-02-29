@@ -4,31 +4,11 @@
 		"description": "Get historical data of taxi trips",
 		"activities": [
 			{
-				"name": "Get History Metadata",
-				"type": "GetMetadata",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "ShotgunDatabase",
-						"type": "DatasetReference"
-					},
-					"fieldList": []
-				}
-			},
-			{
 				"name": "Loop Metadata",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get History Metadata",
+						"activity": "HistoryMetaLookup",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -36,10 +16,6 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.FileName",
-						"type": "Expression"
-					},
 					"activities": [
 						{
 							"name": "Copy_CSV",
@@ -110,6 +86,30 @@
 							]
 						}
 					]
+				}
+			},
+			{
+				"name": "HistoryMetaLookup",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00"
+					},
+					"dataset": {
+						"referenceName": "ShotgunDatabase",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
