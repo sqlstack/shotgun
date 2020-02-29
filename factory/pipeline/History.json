@@ -76,7 +76,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "@concat('yellow_tripdata_', item(), '.csv')",
+								"value": "@concat('yellow_tripdata_', '2009_01', '.csv')",
 								"type": "Expression"
 							}
 						}
@@ -88,7 +88,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "@concat('yellow_tripdata_', item(), '.csv')",
+								"value": "@concat('yellow_tripdata_', '2009_01', '.csv')",
 								"type": "Expression"
 							}
 						}
