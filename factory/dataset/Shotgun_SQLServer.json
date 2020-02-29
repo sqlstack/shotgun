@@ -1,5 +1,5 @@
 {
-	"name": "ShotgunSQLServer",
+	"name": "Shotgun_SQLServer",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ShotgunSQLServer",
