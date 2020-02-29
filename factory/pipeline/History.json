@@ -111,7 +111,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select yearmonth from dbo.HistoryMeta",
 						"queryTimeout": "02:00:00"
 					},
 					"dataset": {
