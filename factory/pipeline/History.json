@@ -110,11 +110,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "AzureSqlSource",
+						"type": "SqlServerSource",
 						"queryTimeout": "02:00:00"
 					},
 					"dataset": {
-						"referenceName": "ShotgunDatabase",
+						"referenceName": "ShotgunSQLServer",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false

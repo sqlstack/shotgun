@@ -1,0 +1,26 @@
+{
+	"name": "ShotgunSQLServer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ShotgunSQLServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "RowID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "YearMonth",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "HistoryMeta"
+		}
+	}
+}
