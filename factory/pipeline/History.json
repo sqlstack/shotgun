@@ -36,6 +36,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.FileName",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy_CSV",
