@@ -6,14 +6,7 @@
 			{
 				"name": "Copy_CSV",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Get Metadata1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -79,7 +72,7 @@
 				]
 			},
 			{
-				"name": "Get Metadata1",
+				"name": "Get History Metadata",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -97,6 +90,19 @@
 					},
 					"fieldList": []
 				}
+			},
+			{
+				"name": "Loop Metadata",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get History Metadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"parameters": {
