@@ -17,7 +17,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity(\"HistoryMetaLookup\").output.YearMonth",
+						"value": "@activity('HistoryMetaLookup').output.YearMonth",
 						"type": "Expression"
 					},
 					"isSequential": true,
