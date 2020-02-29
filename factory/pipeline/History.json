@@ -76,7 +76,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "item()",
+								"value": "concat( 'yellow_tripdata_', item(), '.csv')",
 								"type": "Expression"
 							}
 						}
@@ -88,7 +88,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": {
-								"value": "item()",
+								"value": "concat( 'yellow_tripdata_', item(), '.csv')",
 								"type": "Expression"
 							}
 						}
