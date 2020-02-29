@@ -50,7 +50,14 @@
 							"name": "Set variable1",
 							"type": "SetVariable",
 							"dependsOn": [],
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Test",
+								"value": {
+									"value": "@item().yearmonth",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
