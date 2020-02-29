@@ -26,38 +26,6 @@
 					},
 					"firstRowOnly": true
 				}
-			},
-			{
-				"name": "ForEachYearMonth",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "HistoryMetaLookup",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('HistoryMetaLookup').YearMonth",
-						"type": "Expression"
-					},
-					"isSequential": true,
-					"activities": [
-						{
-							"name": "Set variable1",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "Test",
-								"value": "0"
-							}
-						}
-					]
-				}
 			}
 		],
 		"variables": {
