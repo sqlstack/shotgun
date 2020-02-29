@@ -20,7 +20,9 @@
 						"referenceName": "ShotgunDatabase",
 						"type": "DatasetReference"
 					},
-					"fieldList": []
+					"fieldList": [
+						"structure"
+					]
 				}
 			},
 			{
