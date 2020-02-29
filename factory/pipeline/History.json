@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('HistoryMetaLookup').output",
+						"value": "@activity('HistoryMetaLookup').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
