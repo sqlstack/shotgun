@@ -16,6 +16,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('HistoryMetaLookup').output",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy_CSV",
