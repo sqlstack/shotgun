@@ -1,0 +1,12 @@
+{
+	"name": "HistoryMeta",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HistoryMetaTable",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureTable",
+		"schema": []
+	}
+}
