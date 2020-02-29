@@ -51,14 +51,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Shotgun_Lake",
-						"type": "DatasetReference"
+						"referenceName": "NYC_Taxi",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@pipeline().parameters.FileName",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "NYC_Taxi",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "FileName"
+						}
 					}
 				]
 			},
@@ -66,17 +75,33 @@
 				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"enableStaging": false
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
-			"Year": {
+			"FileName": {
 				"type": "string",
-				"defaultValue": "2009"
-			},
-			"Month": {
-				"type": "string",
-				"defaultValue": "01"
+				"defaultValue": "FileName"
 			}
 		},
 		"annotations": []
