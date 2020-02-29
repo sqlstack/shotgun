@@ -74,7 +74,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FileName": {
-											"value": "@item().YearMonth",
+											"value": "@item()",
 											"type": "Expression"
 										}
 									}
@@ -86,7 +86,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FileName": {
-											"value": "@item().YearMonth",
+											"value": "@item()",
 											"type": "Expression"
 										}
 									}
