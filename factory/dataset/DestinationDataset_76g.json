@@ -1,0 +1,22 @@
+{
+	"name": "DestinationDataset_76g",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "shotgunlake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "yellow_tripdata_2009-01.csv",
+				"fileSystem": "history"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
