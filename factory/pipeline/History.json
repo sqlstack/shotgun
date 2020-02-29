@@ -41,25 +41,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('HistoryMetaLookup')",
+						"value": "@activity('HistoryMetaLookup').output",
 						"type": "Expression"
 					},
-					"isSequential": true,
-					"activities": [
-						{
-							"name": "Set variable1",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "Test",
-								"value": {
-									"value": "@item().yearmonth",
-									"type": "Expression"
-								}
-							}
-						}
-					]
+					"isSequential": true
 				}
 			}
 		],
