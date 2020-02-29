@@ -1,0 +1,19 @@
+{
+	"name": "ShotgunSQLServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Data Source=shotgun.database.windows.net;Initial Catalog=meta;User ID=shotgunadmin",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "shotgunKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "ShotgunDatabasePassword"
+			}
+		}
+	}
+}
