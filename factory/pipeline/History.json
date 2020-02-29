@@ -75,10 +75,7 @@
 						"referenceName": "NYC_Taxi",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": {
-								"value": "@concat('yellow_tripdata_', '2009_01', '.csv')",
-								"type": "Expression"
-							}
+							"FileName": "yellow_tripdata_2009_01.csv"
 						}
 					}
 				],
@@ -87,7 +84,7 @@
 						"referenceName": "Shotgun_Lake",
 						"type": "DatasetReference",
 						"parameters": {
-							"FileName": "FileName"
+							"FileName": "yellow_tripdata_2009_01.csv"
 						}
 					}
 				]
