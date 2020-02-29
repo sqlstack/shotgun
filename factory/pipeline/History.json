@@ -87,7 +87,7 @@
 									"referenceName": "NYC_Taxi",
 									"type": "DatasetReference",
 									"parameters": {
-										"FileName": "@item"
+										"FileName": "@item()"
 									}
 								}
 							],
