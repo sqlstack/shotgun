@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_76g",
+	"name": "NYC_Taxi",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "shotgunlake",
