@@ -88,7 +88,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FileName": {
-											"value": "@item().YearMonth",
+											"value": "@item().yearmonth",
 											"type": "Expression"
 										}
 									}
