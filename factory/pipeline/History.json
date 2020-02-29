@@ -87,7 +87,10 @@
 									"referenceName": "NYC_Taxi",
 									"type": "DatasetReference",
 									"parameters": {
-										"FileName": "@item()"
+										"FileName": {
+											"value": "@item().YearMonth",
+											"type": "Expression"
+										}
 									}
 								}
 							],
@@ -96,7 +99,7 @@
 									"referenceName": "Shotgun_Lake",
 									"type": "DatasetReference",
 									"parameters": {
-										"FileName": "@item()"
+										"FileName": "@item().YearMonth"
 									}
 								}
 							]
