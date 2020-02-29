@@ -61,8 +61,24 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
+		"parameters": {
+			"Year": {
+				"type": "string",
+				"defaultValue": "2009"
+			},
+			"Month": {
+				"type": "string",
+				"defaultValue": "01"
+			}
+		},
 		"annotations": []
 	}
 }

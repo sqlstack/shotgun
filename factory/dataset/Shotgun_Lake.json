@@ -2,15 +2,25 @@
 	"name": "Shotgun_Lake",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "NYC HTTP",
+			"referenceName": "shotgunlake",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string",
+				"defaultValue": "FileName"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "HttpServerLocation",
-				"relativeUrl": "yellow_tripdata_2009-01.csv"
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"fileSystem": "history"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
