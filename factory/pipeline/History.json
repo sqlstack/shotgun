@@ -21,7 +21,7 @@
 						"queryTimeout": "02:00:00"
 					},
 					"dataset": {
-						"referenceName": "ShotgunSQLServer",
+						"referenceName": "Shotgun_SQLServer",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": true
