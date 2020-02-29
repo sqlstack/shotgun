@@ -73,7 +73,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FileName": {
-											"value": "@pipeline().parameters.FileName",
+											"value": "@item()",
 											"type": "Expression"
 										}
 									}
@@ -84,7 +84,10 @@
 									"referenceName": "Shotgun_Lake",
 									"type": "DatasetReference",
 									"parameters": {
-										"FileName": "FileName"
+										"FileName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
 									}
 								}
 							]
