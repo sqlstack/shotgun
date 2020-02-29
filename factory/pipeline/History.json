@@ -63,7 +63,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "NYC_Taxi",
+						"referenceName": "Shotgun_Lake",
 						"type": "DatasetReference",
 						"parameters": {
 							"FileName": "FileName"
