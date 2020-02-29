@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'shotgunlake'"
 		},
+		"ShotgunSQLDatabase_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ShotgunSQLDatabase'"
+		},
 		"NYC HTTP_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://s3.amazonaws.com/nyc-tlc/trip+data/"
@@ -18,6 +22,10 @@
 		"shotgunlake_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://shotgunlake.dfs.core.windows.net"
+		},
+		"shotgunKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://shotgunKeyVault.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -79,25 +87,38 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "Shotgun_Lake",
+								"referenceName": "NYC_Taxi",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"FileName": {
+										"value": "@pipeline().parameters.FileName",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "NYC_Taxi",
+								"referenceName": "Shotgun_Lake",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"FileName": "FileName"
+								}
 							}
 						]
 					}
 				],
+				"parameters": {
+					"FileName": {
+						"type": "string",
+						"defaultValue": "FileName"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Shotgun_Lake')]",
-				"[concat(variables('factoryId'), '/datasets/NYC_Taxi')]"
+				"[concat(variables('factoryId'), '/datasets/NYC_Taxi')]",
+				"[concat(variables('factoryId'), '/datasets/Shotgun_Lake')]"
 			]
 		},
 		{
@@ -106,16 +127,24 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "shotgunlake",
+					"referenceName": "NYC HTTP",
 					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FileName": {
+						"type": "string",
+						"defaultValue": "FileName"
+					}
 				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "yellow_tripdata_2009-01.csv",
-						"fileSystem": "history"
+						"type": "HttpServerLocation",
+						"relativeUrl": {
+							"value": "@dataset().FileName",
+							"type": "Expression"
+						}
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -124,7 +153,7 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/shotgunlake')]"
+				"[concat(variables('factoryId'), '/linkedServices/NYC HTTP')]"
 			]
 		},
 		{
@@ -133,15 +162,25 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "NYC HTTP",
+					"referenceName": "shotgunlake",
 					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FileName": {
+						"type": "string",
+						"defaultValue": "FileName"
+					}
 				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
-						"type": "HttpServerLocation",
-						"relativeUrl": "yellow_tripdata_2009-01.csv"
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().FileName",
+							"type": "Expression"
+						},
+						"fileSystem": "history"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -224,7 +263,7 @@
 				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/NYC HTTP')]"
+				"[concat(variables('factoryId'), '/linkedServices/shotgunlake')]"
 			]
 		},
 		{
@@ -259,6 +298,73 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/shotgunKeyVault')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('shotgunKeyVault_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ShotgunSQLDatabase')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('ShotgunSQLDatabase_connectionString')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "shotgunKeyVault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "ShotgunDatabasePassword"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/shotgunKeyVault')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ShotgunDatabase')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ShotgunSQLDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "RowID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "YearMonth",
+						"type": "char"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "HistoryMeta"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ShotgunSQLDatabase')]"
+			]
 		}
 	]
 }
