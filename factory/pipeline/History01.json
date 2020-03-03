@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "select top 2 YearMonth from dbo.History",
+						"sqlReaderQuery": "select top 2 YearMonth from dbo.HistoryMeta",
 						"queryTimeout": "02:00:00"
 					},
 					"dataset": {
