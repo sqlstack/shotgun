@@ -90,11 +90,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"FileList": {
-				"type": "array"
-			}
-		},
 		"variables": {
 			"Test": {
 				"type": "String",
