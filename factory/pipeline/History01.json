@@ -24,7 +24,7 @@
 						"referenceName": "Shotgun_SQLServer",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": true
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -68,7 +68,14 @@
 						{
 							"name": "Wait1",
 							"type": "Wait",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Set variable2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"waitTimeInSeconds": 1
@@ -123,7 +130,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FileName": {
-											"value": "@item()",
+											"value": "@variables('filename')",
 											"type": "Expression"
 										}
 									}
@@ -134,10 +141,26 @@
 									"referenceName": "Shotgun_Lake",
 									"type": "DatasetReference",
 									"parameters": {
-										"FileName": "@item()"
+										"FileName": {
+											"value": "@variables('filename')",
+											"type": "Expression"
+										}
 									}
 								}
 							]
+						},
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "filename",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
@@ -146,6 +169,9 @@
 		"variables": {
 			"FileNames": {
 				"type": "Array"
+			},
+			"filename": {
+				"type": "String"
 			}
 		},
 		"annotations": []
