@@ -72,6 +72,30 @@
 							"typeProperties": {
 								"waitTimeInSeconds": 1
 							}
+						},
+						{
+							"name": "Validation1",
+							"type": "Validation",
+							"dependsOn": [
+								{
+									"activity": "Wait1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "NYC_Taxi",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": "@item()"
+									}
+								},
+								"timeout": "7.00:00:00",
+								"sleep": 10
+							}
 						}
 					]
 				}
