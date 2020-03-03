@@ -64,7 +64,7 @@
 						"value": "@variables('FileNames')",
 						"type": "Expression"
 					},
-					"batchCount": 5,
+					"batchCount": 6,
 					"activities": [
 						{
 							"name": "Wait1",
