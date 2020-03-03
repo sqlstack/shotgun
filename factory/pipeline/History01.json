@@ -39,6 +39,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('HistoryMetaLookup').output",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Wait1",
