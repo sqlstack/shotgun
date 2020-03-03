@@ -27,8 +27,8 @@
 				}
 			},
 			{
-				"name": "ForEach1",
-				"type": "ForEach",
+				"name": "Set variable1",
+				"type": "SetVariable",
 				"dependsOn": [
 					{
 						"activity": "HistoryMetaLookup",
@@ -39,11 +39,30 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"variableName": "FileNames",
+					"value": {
+						"value": "@activity('HistoryMetaLookup').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
 					"items": {
-						"value": "@activity('HistoryMetaLookup').output",
+						"value": "@variables('FileNames')",
 						"type": "Expression"
 					},
-					"batchCount": 1,
 					"activities": [
 						{
 							"name": "Wait1",
@@ -58,6 +77,11 @@
 				}
 			}
 		],
+		"variables": {
+			"FileNames": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
