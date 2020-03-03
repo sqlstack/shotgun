@@ -68,14 +68,7 @@
 						{
 							"name": "Wait1",
 							"type": "Wait",
-							"dependsOn": [
-								{
-									"activity": "Set variable2",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"waitTimeInSeconds": 1
@@ -130,7 +123,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FileName": {
-											"value": "@variables('filename')",
+											"value": "@item().YearMonth",
 											"type": "Expression"
 										}
 									}
@@ -141,26 +134,10 @@
 									"referenceName": "Shotgun_Lake",
 									"type": "DatasetReference",
 									"parameters": {
-										"FileName": {
-											"value": "@variables('filename')",
-											"type": "Expression"
-										}
+										"FileName": "@item().YearMonth"
 									}
 								}
 							]
-						},
-						{
-							"name": "Set variable2",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "filename",
-								"value": {
-									"value": "@item()",
-									"type": "Expression"
-								}
-							}
 						}
 					]
 				}
